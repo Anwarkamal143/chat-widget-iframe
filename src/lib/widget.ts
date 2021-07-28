@@ -2,6 +2,7 @@ const defaultStyles: any = {
   border: "none",
   "z-index": 2147483647,
   'max-height': "1000000px",
+  'height': '655px',
   width: "388px",
   display: "block !important",
   visibility: "visible",
@@ -11,7 +12,7 @@ const defaultStyles: any = {
   "touch-action": "auto",
   position: "fixed",
   right: "20px",
-  bottom: "20px",
+  bottom: "2px",
 };
 
 interface IConfig {
@@ -27,7 +28,6 @@ interface IWidget {
   createIframe: (siteUrl?:string) => void;
   handleMessage: (event: MessageEvent) => void;
 }
-console.log(`host`, window.location.hostname)
 const Widget: IWidget = {
   iframe: null,
   config: null,
@@ -43,7 +43,7 @@ const Widget: IWidget = {
     }
     this.iframe.setAttribute("style", styles);
     this.iframe.src =
-      siteUrl ||
+      
       window.location.hostname;
     this.iframe.referrerPolicy = "origin";
     document.body.appendChild(this.iframe);
