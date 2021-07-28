@@ -1,8 +1,8 @@
 const defaultStyles: any = {
   border: "none",
   "z-index": 2147483647,
-  height: "650px",
-  width: "350px",
+  'max-height': "1000000px",
+  width: "388px",
   display: "block !important",
   visibility: "visible",
   background: "none transparent",
