@@ -1,8 +1,8 @@
 const defaultStyles: any = {
   border: "none",
   "z-index": 2147483647,
-  'max-height': "1000000px",
-  'height': '655px',
+  "max-height": "1000000px",
+  height: "655px",
   width: "388px",
   display: "block !important",
   visibility: "visible",
@@ -17,7 +17,7 @@ const defaultStyles: any = {
 
 interface IConfig {
   readonly email: string;
-  siteurl?: string
+  siteurl?: string;
 }
 
 interface IWidget {
@@ -25,15 +25,16 @@ interface IWidget {
   iframe: HTMLIFrameElement | null;
   init: (config: IConfig) => void;
   setupListeners: () => void;
-  createIframe: (siteUrl?:string) => void;
+  createIframe: (siteUrl?: string) => void;
   handleMessage: (event: MessageEvent) => void;
 }
+console.log(`host`, window.location.hostname);
 const Widget: IWidget = {
   iframe: null,
   config: null,
   init: function (config: IConfig) {
     this.config = config;
-    this.createIframe(config.siteurl || '');
+    this.createIframe(config.siteurl || "");
   },
   createIframe: function (siteUrl?: string) {
     this.iframe = document.createElement("iframe");
@@ -42,9 +43,7 @@ const Widget: IWidget = {
       styles += key + ": " + defaultStyles[key] + ";";
     }
     this.iframe.setAttribute("style", styles);
-    this.iframe.src =
-      
-      window.location.hostname;
+    this.iframe.src = siteUrl || "";
     this.iframe.referrerPolicy = "origin";
     document.body.appendChild(this.iframe);
     this.setupListeners();
