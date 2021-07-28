@@ -17,7 +17,7 @@ type IDatePicker = {
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
-const DatePick = (props: IDatePicker) => {
+function DatePick  (props: IDatePicker)  {
     const { className, onChange, startDate } = props;
   return (
     <div className={className}>

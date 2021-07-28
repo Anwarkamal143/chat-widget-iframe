@@ -15,7 +15,7 @@ const optionss = [
   { value: "vanilla", label: "Vanilla" },
 ];
 
-const RSelect = (props: ISelectProps) => {
+function RSelect  (props: ISelectProps)  {
   const {
     className,
     options = optionss,

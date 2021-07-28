@@ -4,7 +4,7 @@ import { Callback } from "../CALLBACK";
 import { Ticket } from "../TICKET";
 import ChatBox from "./ChatBox";
 import { Link } from "react-router-dom";
-import { Faq } from "../FAQ/Faq";
+import { Faq } from "../FAQ";
 import {
   ISCALLBACK_FEATURE,
   ISCHAT_FEATURE,
@@ -16,8 +16,8 @@ import { CHATOPTIONS } from "../../utils/enums";
 type IChatProps = {
   className?: string;
 };
-// * todo remove process.env variables after api setup for dynamic options
-const ChatC = (props: IChatProps): ReactElement => {
+
+function ChatC  (props: IChatProps): ReactElement {
   const { className } = props;
   const [tabStates, setTabStates] = useState<string>(CHATOPTIONS.CHAT);
   const [dialogState, setDialogState] = useState<boolean>(false);
@@ -202,15 +202,17 @@ export default styled(ChatC)`
       }
     }
   }
+
   .chat-widget {
     position: fixed;
     right: 15px;
     bottom: 54px;
-    width: 370px;
+    max-width: 370px;
+    width: 100%;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    z-index: 9999;
+    z-index: 99999999999;
 
     .heading-box {
       display: block;
@@ -334,6 +336,7 @@ export default styled(ChatC)`
         height: 30px;
       }
     }
+    
     .react-datepicker-wrapper,
     .rc-time-picker {
       width: 100%;
@@ -403,98 +406,6 @@ export default styled(ChatC)`
 
     .flex-direction-column {
       flex-direction: column;
-    }
-
-    .chat-text {
-      background: #efefef;
-      border-radius: 15px 15px 15px 0;
-      padding: 10px;
-      font-size: 16px;
-      line-height: 22px;
-      width: calc(100% - 40px);
-      margin: 0 0 15px auto;
-      color: #777;
-      position: relative;
-
-      &:before {
-        position: absolute;
-        right: 100%;
-        bottom: 0;
-        border-style: solid;
-        border-width: 0 0 16px 16px;
-        border-color: transparent transparent #efefef transparent;
-        content: "";
-      }
-
-      &.sender {
-        margin: 0 0 15px;
-        background: #4094cf;
-        color: #fff;
-        border-radius: 15px 15px 0 15px;
-
-        &:before {
-          right: auto;
-          left: 100%;
-          border-style: solid;
-          border-width: 15px 0 0 15px;
-          border-color: transparent transparent transparent #4094cf;
-        }
-      }
-
-      p {
-        margin: 0;
-      }
-    }
-
-    .question-box {
-      border: 1px solid #e4e4e4;
-      border-radius: 8px;
-
-      .question {
-        background: #e4e4e4;
-        padding: 10px;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        display: block;
-      }
-
-      .answer-box {
-        padding: 10px;
-        font-size: 14px;
-        line-height: 1.5;
-        color: rgb(102, 102, 102);
-      }
-
-      p {
-        margin: 0 0 10px;
-      }
-    }
-
-    .viewers-info {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .list-thumbs {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      line-height: 1;
-
-      li {
-        width: 10px;
-      }
-
-      svg {
-        width: 100%;
-        height: auto;
-        fill: #999;
-      }
     }
   }
 `;

@@ -32,7 +32,7 @@ const validationSchema = yup.object().shape({
   //     })
   //   ),
 });
-const Ticket = (props: IChatProps): ReactElement => {
+function Ticket  (props: IChatProps): ReactElement  {
   const { className, classes, handleClose, onSubmit } = props;
 
 const {

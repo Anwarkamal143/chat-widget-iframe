@@ -4,49 +4,48 @@ import StartChat from "./StartChat";
 import ScrollToBottom from "react-scroll-to-bottom";
 import { SupportIcon } from "../../assets";
 import ReactEmoji from "react-emoji";
-import loremGenerator  from "dummy-text-generator";
+import loremGenerator from "dummy-text-generator";
 
 type IChatProps = {
   className?: string;
-  classes?:string
-  handleClose?:() => void
+  classes?: string;
+  handleClose?: () => void;
 };
 enum options {
   startchat = "startchat",
   chatbox = "chatbox",
-
 }
-enum MESSANGERS  {
-  ME='me',
-  THEM='them'
+enum MESSANGERS {
+  ME = "me",
+  THEM = "them",
 }
-const ChatBox = (props: IChatProps): ReactElement => {
+function ChatBox  (props: IChatProps): ReactElement  {
   const { className, classes, handleClose } = props;
-    const [tabStates, setTabStates] = useState<string>("startchat");
-    const [messages, setMessages] = useState<
-      { message: string; sender: string }[]
-    >([]);
-    const [message, setMessage] = useState('')
-    const [person, setPerson] = useState("Noah");
-    const [firstMessage, setFirstMessage] = useState<string>();
+  const [tabStates, setTabStates] = useState<string>("startchat");
+  const [messages, setMessages] = useState<
+    { message: string; sender: string }[]
+  >([]);
+  const [message, setMessage] = useState("");
+  const [person, setPerson] = useState("Noah");
+  const [firstMessage, setFirstMessage] = useState<string>();
 
-  const handleChangeMessage =(e:any) => {
-setMessage(e.target.value)
-  }
-  const handeKeypress = (e:any) => {
-      if (e.key === "Enter") {
-        const msg = { sender: MESSANGERS.ME, message };
-        setMessages((mgs) => [...mgs, msg]);
-        setMessage("");
-        setTimeout(() => {
-          const sender = {
-            sender: MESSANGERS.THEM,
-            message: loremGenerator.generateSentence(10),
-          };
-          setMessages((msgs) => [...msgs, sender]);
-        }, 1000);
-      }
-  }
+  const handleChangeMessage = (e: any) => {
+    setMessage(e.target.value);
+  };
+  const handeKeypress = (e: any) => {
+    if (e.key === "Enter") {
+      const msg = { sender: MESSANGERS.ME, message };
+      setMessages((mgs) => [...mgs, msg]);
+      setMessage("");
+      setTimeout(() => {
+        const sender = {
+          sender: MESSANGERS.THEM,
+          message: loremGenerator.generateSentence(10),
+        };
+        setMessages((msgs) => [...msgs, sender]);
+      }, 1000);
+    }
+  };
   return (
     <>
       {options.chatbox === tabStates ? (
@@ -69,9 +68,11 @@ setMessage(e.target.value)
             <ScrollToBottom className="messages">
               <div className="d-flex align-items-end flex-direction-column h-100">
                 <div className="content-area">
-                 {firstMessage && <div className="chat-text">
-                    <p>{firstMessage}</p>
-                  </div>}
+                  {firstMessage && (
+                    <div className="chat-text">
+                      <p>{firstMessage}</p>
+                    </div>
+                  )}
                   <div className="chat-text sender">
                     <p>Hello, {person}</p>
                   </div>
@@ -124,9 +125,49 @@ setMessage(e.target.value)
 };
 
 export default styled(ChatBox)`
-svg{
-  fill: white;
-}
+  .chat-text {
+    background: #efefef;
+    border-radius: 15px 15px 15px 0;
+    padding: 10px;
+    font-size: 16px;
+    line-height: 22px;
+    width: calc(100% - 40px);
+    margin: 0 0 15px auto;
+    color: #777;
+    position: relative;
+
+    &:before {
+      position: absolute;
+      right: 100%;
+      bottom: 0;
+      border-style: solid;
+      border-width: 0 0 16px 16px;
+      border-color: transparent transparent #efefef transparent;
+      content: "";
+    }
+
+    &.sender {
+      margin: 0 0 15px;
+      background: #4094cf;
+      color: #fff;
+      border-radius: 15px 15px 0 15px;
+
+      &:before {
+        right: auto;
+        left: 100%;
+        border-style: solid;
+        border-width: 15px 0 0 15px;
+        border-color: transparent transparent transparent #4094cf;
+      }
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+  svg {
+    fill: white;
+  }
   .messages {
     padding: 5% 0;
     overflow: auto;

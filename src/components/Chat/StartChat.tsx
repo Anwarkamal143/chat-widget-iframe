@@ -1,21 +1,22 @@
-
-import React, { ReactElement, useRef } from "react";
+import  { ReactElement, useRef } from "react";
 import styled from "styled-components";
 import { DatePicker } from "../DatePicker";
 import { Header } from "../Header";
 import { RSelct } from "../Select";
 import { TimePicker } from "../TimePicker";
 
-import * as yup from 'yup';
+import * as yup from "yup";
 import { FormikValues, useFormik } from "formik";
 type IChatProps = {
   className?: string;
-  classes?:string
-  onSubmit?: (...args: any[]) =>  void
-  handleClose?: ()=> void
+  classes?: string;
+  onSubmit?: (...args: any[]) => void;
+  handleClose?: () => void;
 };
 const validationSchema = yup.object().shape({
-  name: yup.string().trim()
+  name: yup
+    .string()
+    .trim()
 
     .required("Name is required!"),
   // topics: yup.array()
@@ -27,34 +28,43 @@ const validationSchema = yup.object().shape({
   //     })
   //   ),
 });
-const Startchat = (props: IChatProps): ReactElement => {
+function Startchat  (props: IChatProps): ReactElement  {
   const { className, classes, handleClose, onSubmit } = props;
-  const ref = useRef<HTMLDivElement>(null)
-const { values, handleChange, setFieldValue, touched,handleBlur, errors, handleSubmit } = useFormik({
-  initialValues: {
-    name: "",
-    message: "",
-    date: new Date(),
-    time: new Date(),
-    option: {
-      label: '',
-      value: ''
+  const ref = useRef<HTMLDivElement>(null);
+  const {
+    values,
+    handleChange,
+    setFieldValue,
+    touched,
+    handleBlur,
+    errors,
+    handleSubmit
+  } = useFormik({
+    initialValues: {
+      name: "",
+      message: "",
+      date: new Date(),
+      time: new Date(),
+      option: {
+        label: "",
+        value: "",
+      },
+    },
+    validationSchema,
+    onSubmit: (values: FormikValues) => {
+      console.log(values.date);
+      console.log({ values });
+      onSubmit?.(values.name, values.message);
+    },
+  });
+  const validation = (value: string) => {
+    if (!value) {
+      ref.current &&
+        ref.current.scrollIntoView({
+          behavior: "smooth",
+        });
     }
-  },
-  validationSchema,
-  onSubmit: (values: FormikValues) => {
-    console.log(values.date);
-    console.log({values});
-    onSubmit?.(values.name, values.message)
-  },
-});
-const validation = (value: string) => {
-  if (!value) {
-    ref.current && ref.current.scrollIntoView({
-      behavior: 'smooth'
-    });
-  }
-}
+  };
   return (
     <div className={`${className} ${classes}`}>
       <div className="content-box">
@@ -146,6 +156,4 @@ const validation = (value: string) => {
   );
 };
 
-export default styled(Startchat)`
-  
-`;
+export default styled(Startchat)``;

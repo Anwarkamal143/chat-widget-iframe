@@ -12,7 +12,7 @@ type IHeaderProps = {
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
-const Header = (props: IHeaderProps) => {
+function Header (props: IHeaderProps) {
   const { className, onClose, title } = props;
   return (
     <strong className={`${className} heading-box`}>

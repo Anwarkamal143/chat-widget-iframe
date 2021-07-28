@@ -1,9 +1,10 @@
 const defaultStyles: any = {
   border: "none",
   "z-index": 2147483647,
-  "max-height": "1000000px",
+  "max-height": "100vh",
   height: "655px",
-  width: "388px",
+  width: "100%",
+  "max-width": "388px",
   display: "block !important",
   visibility: "visible",
   background: "none transparent",
@@ -11,8 +12,8 @@ const defaultStyles: any = {
   "pointer-events": "auto",
   "touch-action": "auto",
   position: "fixed",
-  right: "2px",
-  bottom: "2px",
+  right: "0",
+  bottom: "0",
 };
 
 interface IConfig {
