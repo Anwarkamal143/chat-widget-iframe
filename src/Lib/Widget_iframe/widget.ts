@@ -11,7 +11,7 @@ const defaultStyles: any = {
   "pointer-events": "auto",
   "touch-action": "auto",
   position: "fixed",
-  right: "20px",
+  right: "2px",
   bottom: "2px",
 };
 
@@ -28,7 +28,6 @@ interface IWidget {
   createIframe: (siteUrl?: string) => void;
   handleMessage: (event: MessageEvent) => void;
 }
-console.log(`host`, window.location.hostname);
 const Widget: IWidget = {
   iframe: null,
   config: null,

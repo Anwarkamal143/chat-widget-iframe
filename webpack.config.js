@@ -15,7 +15,7 @@ const config = {
       "./src/index.tsx",
     ],
 
-    Widget: ["./src/lib/widget.ts"],
+    Widget: ["./src/Lib/Widget_iframe/widget.ts"],
   },
   output: {
     filename: "[name].js",
